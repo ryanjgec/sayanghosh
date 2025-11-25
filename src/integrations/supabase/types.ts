@@ -98,6 +98,27 @@ export type Database = {
         }
         Relationships: []
       }
+      cv_downloads: {
+        Row: {
+          downloaded_at: string
+          email: string
+          id: string
+          name: string
+        }
+        Insert: {
+          downloaded_at?: string
+          email: string
+          id?: string
+          name: string
+        }
+        Update: {
+          downloaded_at?: string
+          email?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       kb_articles: {
         Row: {
           author_id: string | null

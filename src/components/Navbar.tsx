@@ -17,7 +17,6 @@ const navLinks = [
   { name: "Experience", path: "/experience" },
   { name: "Knowledge Base", path: "/knowledge-base" },
   { name: "Case Studies", path: "/case-studies" },
-  { name: "Resume", path: "/resume" },
   { name: "Contact", path: "/contact" },
 ];
 

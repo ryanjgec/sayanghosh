@@ -20,7 +20,6 @@ import EntraID from "./pages/kb/EntraID";
 import Defender from "./pages/kb/Defender";
 import PowerShell from "./pages/kb/PowerShell";
 import CaseStudies from "./pages/CaseStudies";
-import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import BlogArticle from "./pages/BlogArticle";
@@ -56,7 +55,6 @@ const AppContent = () => {
           <Route path="/knowledge-base/powershell" element={<PowerShell />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-studies/:slug" element={<BlogArticle />} />
-          <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<AdminDashboard />} />
