@@ -99,7 +99,7 @@ const CaseStudies = () => {
           ) : (
             <div className="grid gap-8 md:grid-cols-2">
               {caseStudies.map((study) => (
-                <Link key={study.id} to={`/blog/${study.slug}`}>
+                <Link key={study.id} to={`/case-studies/${study.slug}`}>
                   <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
                     <CardHeader>
                       <div className="flex justify-between items-start mb-2">
@@ -143,7 +143,7 @@ const CaseStudies = () => {
                         </div>
                       )}
 
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4 border-t">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4 border-t">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-4 w-4" />
                           <span>{format(new Date(study.published_at), "MMM d, yyyy")}</span>

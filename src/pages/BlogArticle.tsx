@@ -79,10 +79,10 @@ const BlogArticle = () => {
       <div className="min-h-screen py-12 bg-background">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
-          <Link to="/blog">
+          <Link to="/case-studies">
             <Button>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
+              Back to Case Studies
             </Button>
           </Link>
         </div>
@@ -107,10 +107,10 @@ const BlogArticle = () => {
       <div className="min-h-screen py-12 bg-background">
         <article className="container mx-auto px-4 max-w-4xl">
           {/* Back Button */}
-          <Link to="/blog">
+          <Link to="/case-studies">
             <Button variant="ghost" className="mb-6">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
+              Back to Case Studies
             </Button>
           </Link>
 
@@ -162,10 +162,10 @@ const BlogArticle = () => {
 
           {/* Footer */}
           <div className="mt-12 pt-8 border-t">
-            <Link to="/blog">
+            <Link to="/case-studies">
               <Button>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to All Articles
+                Back to Case Studies
               </Button>
             </Link>
           </div>
