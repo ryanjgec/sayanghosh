@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { usePageTracking } from "@/hooks/usePageTracking";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
@@ -21,6 +22,12 @@ import PowerShell from "./pages/kb/PowerShell";
 import CaseStudies from "./pages/CaseStudies";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
+import Auth from "./pages/Auth";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminArticles from "./pages/admin/Articles";
+import ArticleEditor from "./pages/admin/ArticleEditor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +54,12 @@ const AppContent = () => {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/articles" element={<AdminArticles />} />
+          <Route path="/admin/articles/:id" element={<ArticleEditor />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -62,7 +75,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AppContent />
+          <AuthProvider>
+            <AppContent />
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </HelmetProvider>
