@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, CheckCircle2, Target, Wrench, TrendingUp } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const experience = {
   company: "Accenture",
@@ -93,6 +94,12 @@ const projects = [
 
 const Experience = () => {
   return (
+    <>
+      <SEO 
+        title="Experience & Projects"
+        description="Sayan Ghosh's professional experience at Accenture managing enterprise Microsoft 365 projects including Exchange Online, Intune MDM, tenant migrations, and infrastructure management."
+        keywords="Microsoft 365 projects, Exchange Online management, Intune MDM deployment, tenant migration, Atlas Air, JDE, Amadeus, cloud infrastructure projects"
+      />
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
@@ -206,6 +213,7 @@ const Experience = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

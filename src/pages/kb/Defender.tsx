@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const Defender = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Microsoft Defender - Knowledge Base"
+        description="Microsoft Defender guides covering threat protection, security incident response, DLP policies, and comprehensive security operations."
+        keywords="Microsoft Defender, threat protection, DLP policies, security incidents, Defender for Office 365, security operations"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const Defender = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

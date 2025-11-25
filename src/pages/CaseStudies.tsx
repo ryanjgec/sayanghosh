@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 
 const caseStudies = [
   {
@@ -55,6 +56,12 @@ const caseStudies = [
 
 const CaseStudies = () => {
   return (
+    <>
+      <SEO 
+        title="Case Studies"
+        description="Real-world Microsoft 365 project case studies from Sayan Ghosh including Exchange Online management, Intune MDM deployment, tenant migrations, and Confluence administration."
+        keywords="M365 case studies, Exchange Online projects, Intune implementation, tenant migration projects, Atlas Air, JDE, Amadeus projects"
+      />
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
@@ -131,6 +138,7 @@ const CaseStudies = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

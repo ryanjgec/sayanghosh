@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Linkedin, FileText } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const Resume = () => {
   const handleDownloadClick = () => {
@@ -13,6 +14,12 @@ const Resume = () => {
   };
 
   return (
+    <>
+      <SEO 
+        title="Resume"
+        description="Download Sayan Ghosh's resume. Microsoft 365 Administrator with 4+ years experience, MS-900, AZ-900, and MS-102 certified. Available for M365 and Cloud Services roles."
+        keywords="Sayan Ghosh resume, M365 administrator resume, Microsoft 365 CV, cloud engineer resume, Accenture experience"
+      />
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
@@ -129,6 +136,7 @@ const Resume = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
