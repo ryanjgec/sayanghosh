@@ -51,7 +51,7 @@ const About = () => {
             </Badge>
             <Badge variant="outline" className="flex items-center gap-2 py-2 px-4">
               <Calendar className="h-4 w-4" />
-              1 Month Notice Period
+              Currently Serving Notice Period
             </Badge>
             <Badge variant="outline" className="flex items-center gap-2 py-2 px-4">
               <Languages className="h-4 w-4" />

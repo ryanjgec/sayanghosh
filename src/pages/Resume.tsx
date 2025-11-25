@@ -86,9 +86,11 @@ const Resume = () => {
 
               {/* Download Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="flex-1" disabled onClick={handleDownloadClick}>
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume (PDF)
+                <Button size="lg" className="flex-1" asChild onClick={handleDownloadClick}>
+                  <a href="/Sayan_Resume_M365.pdf" download="Sayan_Ghosh_Resume_M365.pdf">
+                    <Download className="mr-2 h-5 w-5" />
+                    Download Resume (PDF)
+                  </a>
                 </Button>
                 <Button size="lg" variant="outline" className="flex-1" asChild>
                   <a
@@ -112,8 +114,8 @@ const Resume = () => {
               <div className="space-y-2 text-center text-muted-foreground">
                 <p>
                   <strong>Email:</strong>{" "}
-                  <a href="mailto:sayan.ghosh@outlook.in" className="text-primary hover:underline">
-                    sayan.ghosh@outlook.in
+                  <a href="mailto:sayan@infra365.online" className="text-primary hover:underline">
+                    sayan@infra365.online
                   </a>
                 </p>
                 <p>
@@ -123,16 +125,12 @@ const Resume = () => {
                   <strong>Location:</strong> India
                 </p>
                 <p>
-                  <strong>Notice Period:</strong> 1 Month
+                  <strong>Notice Period:</strong> Currently Serving Notice Period
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Note */}
-          <div className="mt-8 text-center text-sm text-muted-foreground">
-            <p>Resume PDF will be available for download soon. Please connect on LinkedIn for more details.</p>
-          </div>
         </div>
       </div>
     </div>

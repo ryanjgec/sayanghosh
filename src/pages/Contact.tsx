@@ -78,7 +78,7 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact"
-        description="Get in touch with Sayan Ghosh for Microsoft 365 administration opportunities, consulting, or collaboration. Available for M365 and Cloud Services roles with 1 month notice period."
+        description="Get in touch with Sayan Ghosh for Microsoft 365 administration opportunities, consulting, or collaboration. Available for M365 and Cloud Services roles, currently serving notice period."
         keywords="contact Sayan Ghosh, M365 administrator contact, hire Microsoft 365 expert, cloud services consultant"
       />
     <div className="min-h-screen py-12 bg-background">
@@ -105,10 +105,10 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold text-sm">Email</p>
                     <a
-                      href="mailto:sayan.ghosh@outlook.in"
+                      href="mailto:sayan@infra365.online"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
-                      sayan.ghosh@outlook.in
+                      sayan@infra365.online
                     </a>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ const Contact = () => {
                   <Clock className="h-5 w-5 text-primary mt-1" />
                   <div>
                     <p className="font-semibold text-sm">Availability</p>
-                    <p className="text-sm text-muted-foreground">1 Month Notice Period</p>
+                    <p className="text-sm text-muted-foreground">Currently Serving Notice Period</p>
                   </div>
                 </div>
               </CardContent>

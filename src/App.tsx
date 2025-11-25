@@ -69,6 +69,7 @@ const AppContent = () => {
         </Routes>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
