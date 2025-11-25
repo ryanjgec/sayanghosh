@@ -24,8 +24,10 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import BlogArticle from "./pages/BlogArticle";
 import AdminDashboard from "./pages/admin/Dashboard";
-import AdminArticles from "./pages/admin/Articles";
-import ArticleEditor from "./pages/admin/ArticleEditor";
+import Blog from "./pages/admin/Blog";
+import BlogEditor from "./pages/admin/BlogEditor";
+import CaseStudiesAdmin from "./pages/admin/CaseStudiesAdmin";
+import CaseStudyEditor from "./pages/admin/CaseStudyEditor";
 import AdminAnalytics from "./pages/admin/Analytics";
 import KBArticles from "./pages/admin/KBArticles";
 import KBArticleEditor from "./pages/admin/KBArticleEditor";
@@ -58,8 +60,10 @@ const AppContent = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/articles" element={<AdminArticles />} />
-          <Route path="/admin/articles/:id" element={<ArticleEditor />} />
+          <Route path="/admin/blog" element={<Blog />} />
+          <Route path="/admin/blog/:id" element={<BlogEditor />} />
+          <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
+          <Route path="/admin/case-studies/:id" element={<CaseStudyEditor />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="/admin/kb-articles" element={<KBArticles />} />
           <Route path="/admin/kb-articles/:id" element={<KBArticleEditor />} />

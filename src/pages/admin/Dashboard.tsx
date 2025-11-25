@@ -43,7 +43,7 @@ const AdminDashboard = () => {
 
           {/* Quick Stats/Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-            <Link to="/admin/articles">
+            <Link to="/admin/blog">
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardHeader>
                   <div className="flex items-center gap-3">
@@ -51,14 +51,35 @@ const AdminDashboard = () => {
                       <FileText className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle>Articles</CardTitle>
+                      <CardTitle>Blog</CardTitle>
                       <CardDescription>Manage blog posts</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <Button className="w-full">
-                    Manage Articles
+                    Manage Blog
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link to="/admin/case-studies">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <FileText className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle>Case Studies</CardTitle>
+                      <CardDescription>Manage case studies</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full">
+                    Manage Case Studies
                   </Button>
                 </CardContent>
               </Card>
