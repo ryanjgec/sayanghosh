@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const OneDrive = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="OneDrive for Business - Knowledge Base"
+        description="OneDrive for Business guides covering sync configuration, sharing management, Known Folder Move, and troubleshooting sync issues."
+        keywords="OneDrive for Business, OneDrive sync, file sharing, Known Folder Move, OneDrive troubleshooting"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const OneDrive = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

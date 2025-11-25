@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const PowerShell = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="PowerShell - Knowledge Base"
+        description="PowerShell automation guides for Microsoft 365 including essential cmdlets, bulk user management, Exchange automation, and best practices."
+        keywords="PowerShell M365, PowerShell automation, M365 cmdlets, bulk user management, Exchange PowerShell, Graph API"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const PowerShell = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

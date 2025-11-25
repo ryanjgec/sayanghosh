@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const ExchangeOnline = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Exchange Online - Knowledge Base"
+        description="Exchange Online administration guides including mailbox migration, transport rules, retention policies, and troubleshooting for Microsoft 365 administrators."
+        keywords="Exchange Online, mailbox migration, transport rules, retention policies, email administration, Exchange troubleshooting"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -83,6 +91,7 @@ const ExchangeOnline = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

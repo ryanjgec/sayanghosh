@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const IntuneMDM = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Intune MDM - Knowledge Base"
+        description="Intune MDM and mobile device management guides covering compliance policies, Windows Autopilot, app deployment, and device management for Microsoft 365."
+        keywords="Intune MDM, device compliance, Windows Autopilot, app deployment, mobile device management, Intune configuration"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const IntuneMDM = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

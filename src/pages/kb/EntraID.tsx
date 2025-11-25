@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const EntraID = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Entra ID - Knowledge Base"
+        description="Entra ID (Azure AD) administration guides covering Conditional Access, user lifecycle management, MFA configuration, and identity governance."
+        keywords="Entra ID, Azure AD, Conditional Access, MFA, identity management, user lifecycle, identity governance"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const EntraID = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

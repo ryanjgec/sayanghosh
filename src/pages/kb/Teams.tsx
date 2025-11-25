@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const articles = [
   {
@@ -33,7 +34,14 @@ const Teams = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Microsoft Teams - Knowledge Base"
+        description="Microsoft Teams administration guides covering governance policies, meeting configuration, channel management, and best practices for collaboration."
+        keywords="Microsoft Teams, Teams governance, meeting policies, Teams administration, collaboration best practices"
+        ogType="article"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
@@ -80,6 +88,7 @@ const Teams = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

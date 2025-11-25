@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, Linkedin, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -33,6 +34,12 @@ const Contact = () => {
   };
 
   return (
+    <>
+      <SEO 
+        title="Contact"
+        description="Get in touch with Sayan Ghosh for Microsoft 365 administration opportunities, consulting, or collaboration. Available for M365 and Cloud Services roles with 1 month notice period."
+        keywords="contact Sayan Ghosh, M365 administrator contact, hire Microsoft 365 expert, cloud services consultant"
+      />
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
@@ -177,6 +184,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

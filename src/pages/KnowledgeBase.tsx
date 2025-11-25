@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Mail, Smartphone, Users, FolderOpen, Lock, Shield, Terminal, ArrowRight } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const categories = [
   {
@@ -84,7 +85,13 @@ const KnowledgeBase = () => {
   });
 
   return (
-    <div className="min-h-screen py-12 bg-background">
+    <>
+      <SEO 
+        title="Knowledge Base"
+        description="Comprehensive Microsoft 365 administration knowledge base covering Exchange Online, Intune MDM, Teams, OneDrive, Entra ID, Defender, and PowerShell tutorials and guides."
+        keywords="M365 knowledge base, Exchange Online tutorials, Intune MDM guides, Teams administration, Microsoft 365 how-to, PowerShell scripts, Defender security guides"
+      />
+      <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-4xl mx-auto mb-12 text-center">
@@ -172,6 +179,7 @@ const KnowledgeBase = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

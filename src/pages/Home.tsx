@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SkillCard } from "@/components/SkillCard";
+import { SEO } from "@/components/SEO";
 import { 
   Cloud, 
   Shield, 
@@ -65,7 +66,13 @@ const featuredCases = [
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO 
+        title="Home"
+        description="Sayan Ghosh - Microsoft 365 Administrator with 4+ years managing enterprise cloud infrastructure. Expert in Exchange Online, Intune MDM, Entra ID, Teams, Defender, and PowerShell automation."
+        keywords="Sayan Ghosh, Microsoft 365 Administrator, M365 Admin, Cloud Services Engineer, Exchange Online, Intune MDM, Entra ID, Teams Administrator, Microsoft Defender, PowerShell Automation, Azure, Accenture"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-hero-gradient text-primary-foreground py-20 md:py-32">
         <div className="container mx-auto px-4">
@@ -210,6 +217,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

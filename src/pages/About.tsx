@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, MapPin, Languages, Calendar, Briefcase } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const certifications = [
   { name: "MS-900", title: "Microsoft 365 Fundamentals", icon: "📜" },
@@ -32,6 +33,12 @@ const timeline = [
 
 const About = () => {
   return (
+    <>
+      <SEO 
+        title="About"
+        description="Learn about Sayan Ghosh's 4+ years of experience at Accenture managing Microsoft 365 tenants for enterprises. MS-900, AZ-900, and MS-102 certified with expertise in cloud infrastructure."
+        keywords="Sayan Ghosh about, M365 career, Microsoft certifications, Accenture, Cloud Infrastructure experience, MS-102, AZ-900, MS-900"
+      />
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
@@ -142,6 +149,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
