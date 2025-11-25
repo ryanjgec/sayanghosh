@@ -83,24 +83,26 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="opacity-50">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <BarChart className="h-6 w-6 text-primary" />
+            <Link to="/admin/analytics">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <BarChart className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle>Analytics</CardTitle>
+                      <CardDescription>View website metrics</CardDescription>
+                    </div>
                   </div>
-                  <div>
-                    <CardTitle>Analytics</CardTitle>
-                    <CardDescription>Coming soon</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" disabled>
-                  View Analytics
-                </Button>
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full">
+                    View Analytics
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
 
           {/* Role Info */}
