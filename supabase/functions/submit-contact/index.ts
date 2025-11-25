@@ -75,7 +75,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to user
     const userEmailPromise = resend.emails.send({
-      from: "Sayan Ghosh <onboarding@resend.dev>",
+      from: "Sayan Ghosh <sayan@infra365.online>",
       to: [email],
       subject: "Thank you for contacting me!",
       html: `
@@ -99,8 +99,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification email to admin
     const adminEmailPromise = resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: ["your-email@example.com"], // Replace with your actual email
+      from: "Contact Form <sayan@infra365.online>",
+      to: ["sayan@infra365.online"],
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
