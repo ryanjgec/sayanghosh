@@ -28,6 +28,10 @@ const ArticleEditor = () => {
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [tags, setTags] = useState("");
   const [published, setPublished] = useState(false);
+  const [type, setType] = useState<"blog" | "case_study">("blog");
+  const [client, setClient] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [metrics, setMetrics] = useState("");
   const [saving, setSaving] = useState(false);
 
   const isEditMode = id && id !== "new";
@@ -68,6 +72,10 @@ const ArticleEditor = () => {
       setCoverImageUrl(data.cover_image_url || "");
       setTags(data.tags ? data.tags.join(", ") : "");
       setPublished(data.published);
+      setType((data.type as "blog" | "case_study") || "blog");
+      setClient(data.client || "");
+      setIndustry(data.industry || "");
+      setMetrics(data.metrics ? JSON.stringify(data.metrics, null, 2) : "");
     } catch (error) {
       console.error("Error fetching article:", error);
       toast({
@@ -92,12 +100,26 @@ const ArticleEditor = () => {
     setSaving(true);
 
     try {
-      const tagsArray = tags
+    const tagsArray = tags
         .split(",")
         .map((tag) => tag.trim())
         .filter((tag) => tag.length > 0);
 
-      const articleData = {
+      let metricsData = null;
+      if (type === "case_study" && metrics) {
+        try {
+          metricsData = JSON.parse(metrics);
+        } catch (e) {
+          toast({
+            title: "Invalid metrics format",
+            description: "Please enter valid JSON for metrics",
+            variant: "destructive",
+          });
+          return;
+        }
+      }
+
+      const articleData: any = {
         title: title.trim(),
         slug: slug.trim(),
         excerpt: excerpt.trim() || null,
@@ -107,7 +129,14 @@ const ArticleEditor = () => {
         published,
         published_at: published && !isEditMode ? new Date().toISOString() : undefined,
         author_id: user!.id,
+        type,
       };
+
+      if (type === "case_study") {
+        articleData.client = client || null;
+        articleData.industry = industry || null;
+        articleData.metrics = metricsData;
+      }
 
       if (isEditMode) {
         const { error } = await supabase
@@ -197,6 +226,19 @@ const ArticleEditor = () => {
                   <CardTitle>Content</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="type">Content Type</Label>
+                    <select
+                      id="type"
+                      value={type}
+                      onChange={(e) => setType(e.target.value as "blog" | "case_study")}
+                      className="w-full px-3 py-2 border rounded-md bg-background"
+                    >
+                      <option value="blog">Blog Post</option>
+                      <option value="case_study">Case Study</option>
+                    </select>
+                  </div>
+
                   <div className="space-y-2">
                     <Label htmlFor="title">Title *</Label>
                     <Input
@@ -336,6 +378,49 @@ const ArticleEditor = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              {type === "case_study" && (
+                <>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Case Study Details</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="client">Client</Label>
+                        <Input
+                          id="client"
+                          value={client}
+                          onChange={(e) => setClient(e.target.value)}
+                          placeholder="Company Name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="industry">Industry</Label>
+                        <Input
+                          id="industry"
+                          value={industry}
+                          onChange={(e) => setIndustry(e.target.value)}
+                          placeholder="Technology, Healthcare, etc."
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="metrics">Metrics (JSON format)</Label>
+                        <Textarea
+                          id="metrics"
+                          value={metrics}
+                          onChange={(e) => setMetrics(e.target.value)}
+                          placeholder='{"metric1": "value1", "metric2": "value2"}'
+                          rows={6}
+                        />
+                        <p className="text-xs text-muted-foreground">
+                          Example: {`{"Users Migrated": "10,000+", "Downtime": "<2 hours"}`}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </>
+              )}
             </div>
           </div>
         </div>

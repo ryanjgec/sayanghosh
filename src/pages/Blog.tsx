@@ -52,6 +52,7 @@ const Blog = () => {
         .from("articles")
         .select("*")
         .eq("published", true)
+        .eq("type", "blog")
         .order("published_at", { ascending: false });
 
       if (error) throw error;

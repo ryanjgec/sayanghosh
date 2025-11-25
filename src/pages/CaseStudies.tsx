@@ -1,143 +1,168 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { SEO } from "@/components/SEO";
+import { Calendar, User, Building, TrendingUp } from "lucide-react";
+import { format } from "date-fns";
 
-const caseStudies = [
-  {
-    title: "Exchange Online Management - Atlas Air",
-    client: "Atlas Air",
-    industry: "Aviation",
-    description: "Comprehensive Exchange Online administration for global airline with 5000+ mailboxes, implementing advanced security and compliance measures.",
-    tags: ["Exchange Online", "Security", "Compliance", "Migration"],
-    metrics: [
-      { label: "Uptime", value: "99.9%" },
-      { label: "Ticket Resolution", value: "40% faster" },
-      { label: "Users", value: "5000+" },
-    ],
-  },
-  {
-    title: "Intune MDM & Infrastructure - JDE",
-    client: "JDE (Jacobs Douwe Egberts)",
-    industry: "Food & Beverage",
-    description: "End-to-end Intune MDM deployment and infrastructure management for global coffee company across multiple regions.",
-    tags: ["Intune MDM", "Device Management", "Compliance", "Autopilot"],
-    metrics: [
-      { label: "Devices Managed", value: "1000+" },
-      { label: "Compliance Rate", value: "95%" },
-      { label: "Provisioning Time", value: "60% faster" },
-    ],
-  },
-  {
-    title: "Tenant-to-Tenant Migration - JDE Peets",
-    client: "JDE Peets",
-    industry: "Food & Beverage",
-    description: "Complex post-merger tenant consolidation with comprehensive data migration including mailboxes, files, Teams, and security configurations.",
-    tags: ["Migration", "M365", "Change Management", "SharePoint"],
-    metrics: [
-      { label: "Data Integrity", value: "99.8%" },
-      { label: "Security Incidents", value: "0" },
-      { label: "Duration", value: "6 months" },
-    ],
-  },
-  {
-    title: "Confluence Cloud Administration - Amadeus",
-    client: "Amadeus",
-    industry: "Travel Technology",
-    description: "Comprehensive Confluence Cloud administration and governance for global travel technology leader with focus on knowledge management.",
-    tags: ["Confluence", "Knowledge Management", "Governance", "Atlassian"],
-    metrics: [
-      { label: "Spaces Managed", value: "100+" },
-      { label: "Issue Reduction", value: "50%" },
-      { label: "User Satisfaction", value: "4.5/5" },
-    ],
-  },
-];
+interface Article {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  client: string | null;
+  industry: string | null;
+  metrics: any;
+  tags: string[] | null;
+  published_at: string;
+  author_id: string;
+  profiles: {
+    full_name: string;
+  } | null;
+}
 
 const CaseStudies = () => {
+  const [caseStudies, setCaseStudies] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchCaseStudies();
+  }, []);
+
+  const fetchCaseStudies = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .eq("published", true)
+        .eq("type", "case_study")
+        .order("published_at", { ascending: false });
+
+      if (error) throw error;
+
+      // Fetch author profiles
+      const articlesWithProfiles = await Promise.all(
+        (data || []).map(async (article) => {
+          if (article.author_id) {
+            const { data: profile } = await supabase
+              .from("profiles")
+              .select("full_name")
+              .eq("id", article.author_id)
+              .single();
+            return { ...article, profiles: profile };
+          }
+          return { ...article, profiles: null };
+        })
+      );
+
+      setCaseStudies(articlesWithProfiles as Article[]);
+    } catch (error) {
+      console.error("Error fetching case studies:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
-      <SEO 
+      <SEO
         title="Case Studies"
-        description="Real-world Microsoft 365 project case studies from Sayan Ghosh including Exchange Online management, Intune MDM deployment, tenant migrations, and Confluence administration."
-        keywords="M365 case studies, Exchange Online projects, Intune implementation, tenant migration projects, Atlas Air, JDE, Amadeus projects"
+        description="Real-world Microsoft 365 project case studies showcasing expertise in Exchange Online, Intune, tenant migrations, and more."
+        keywords="M365 case studies, Exchange Online projects, Intune implementation, tenant migration, Microsoft 365 success stories"
       />
-    <div className="min-h-screen py-12 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Case Studies</h1>
-          <p className="text-lg text-muted-foreground">
-            Real-world projects showcasing Microsoft 365 implementations, migrations, and infrastructure management
-          </p>
-        </div>
+      <div className="min-h-screen py-12 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              Case Studies
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Real-world success stories showcasing expertise in Microsoft 365, Azure, and enterprise IT solutions
+            </p>
+          </div>
 
-        {/* Case Studies Grid */}
-        <div className="max-w-6xl mx-auto space-y-8">
-          {caseStudies.map((study, index) => (
-            <Card key={index} className="hover:shadow-card-hover transition-all duration-300">
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Badge variant="outline" className="text-primary border-primary">
-                        {study.industry}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-2xl mb-2">{study.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      <span className="font-semibold">{study.client}</span>
-                    </CardDescription>
-                  </div>
-                </div>
-                <p className="text-muted-foreground mt-4">{study.description}</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Tags */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-sm text-muted-foreground uppercase">Technologies</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Metrics */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-sm text-muted-foreground uppercase">Key Metrics</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {study.metrics.map((metric, idx) => (
-                      <div key={idx} className="bg-muted/30 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-primary mb-1">{metric.value}</div>
-                        <div className="text-sm text-muted-foreground">{metric.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Button variant="outline" className="w-full sm:w-auto" disabled>
-                  Read Full Case Study (Coming Soon)
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Note */}
-        <div className="max-w-6xl mx-auto mt-12">
-          <Card className="bg-muted/30">
-            <CardContent className="pt-6">
-              <p className="text-center text-muted-foreground">
-                Detailed case studies with in-depth technical analysis, challenges, solutions, and lessons learned will be added soon.
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading case studies...</p>
+            </div>
+          ) : caseStudies.length === 0 ? (
+            <div className="text-center p-8 bg-muted/50 rounded-lg">
+              <h2 className="text-2xl font-semibold mb-3 text-foreground">
+                Case Studies Coming Soon
+              </h2>
+              <p className="text-muted-foreground">
+                We're working on comprehensive case studies with in-depth analysis, challenges faced, solutions implemented, and measurable outcomes.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2">
+              {caseStudies.map((study) => (
+                <Link key={study.id} to={`/blog/${study.slug}`}>
+                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                    <CardHeader>
+                      <div className="flex justify-between items-start mb-2">
+                        {study.industry && <Badge variant="outline">{study.industry}</Badge>}
+                      </div>
+                      <CardTitle className="text-2xl mb-2">{study.title}</CardTitle>
+                      {study.client && (
+                        <CardDescription className="flex items-center gap-2 text-sm">
+                          <Building className="h-4 w-4" />
+                          {study.client}
+                        </CardDescription>
+                      )}
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-foreground/90">{study.excerpt}</p>
+
+                      {study.tags && study.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {study.tags.map((tag) => (
+                            <Badge key={tag} variant="secondary">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+
+                      {study.metrics && (
+                        <div className="pt-4 border-t space-y-2">
+                          <p className="font-semibold text-sm text-muted-foreground flex items-center gap-2">
+                            <TrendingUp className="h-4 w-4" />
+                            Key Metrics:
+                          </p>
+                          <div className="grid grid-cols-2 gap-3">
+                            {Object.entries(study.metrics).map(([key, value]) => (
+                              <div key={key} className="bg-muted/50 p-3 rounded-lg">
+                                <p className="text-xs text-muted-foreground">{key}</p>
+                                <p className="font-semibold text-foreground">{value as string}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4 border-t">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>{format(new Date(study.published_at), "MMM d, yyyy")}</span>
+                        </div>
+                        {study.profiles && (
+                          <div className="flex items-center gap-2">
+                            <User className="h-4 w-4" />
+                            <span>{study.profiles.full_name}</span>
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-    </div>
     </>
   );
 };
