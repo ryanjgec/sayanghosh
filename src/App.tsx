@@ -29,7 +29,10 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminArticles from "./pages/admin/Articles";
 import ArticleEditor from "./pages/admin/ArticleEditor";
 import AdminAnalytics from "./pages/admin/Analytics";
+import KBArticles from "./pages/admin/KBArticles";
+import KBArticleEditor from "./pages/admin/KBArticleEditor";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +65,8 @@ const AppContent = () => {
           <Route path="/admin/articles" element={<AdminArticles />} />
           <Route path="/admin/articles/:id" element={<ArticleEditor />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/admin/kb-articles" element={<KBArticles />} />
+          <Route path="/admin/kb-articles/:id" element={<KBArticleEditor />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

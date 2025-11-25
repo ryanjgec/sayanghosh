@@ -17,44 +17,56 @@ export type Database = {
       articles: {
         Row: {
           author_id: string | null
+          client: string | null
           content: string
           cover_image_url: string | null
           created_at: string
           excerpt: string | null
           id: string
+          industry: string | null
+          metrics: Json | null
           published: boolean
           published_at: string | null
           slug: string
           tags: string[] | null
           title: string
+          type: string
           updated_at: string
         }
         Insert: {
           author_id?: string | null
+          client?: string | null
           content: string
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string
+          industry?: string | null
+          metrics?: Json | null
           published?: boolean
           published_at?: string | null
           slug: string
           tags?: string[] | null
           title: string
+          type?: string
           updated_at?: string
         }
         Update: {
           author_id?: string | null
+          client?: string | null
           content?: string
           cover_image_url?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string
+          industry?: string | null
+          metrics?: Json | null
           published?: boolean
           published_at?: string | null
           slug?: string
           tags?: string[] | null
           title?: string
+          type?: string
           updated_at?: string
         }
         Relationships: []
@@ -83,6 +95,48 @@ export type Database = {
           message?: string
           name?: string
           phone?: string | null
+        }
+        Relationships: []
+      }
+      kb_articles: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published: boolean
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          category: string
+          content: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
