@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, Linkedin, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/analytics";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -15,6 +16,9 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track contact form submission
+    trackEvent("contact_form_submit", "Contact", "Form Submission");
     
     // This is a frontend-only form for now
     toast({

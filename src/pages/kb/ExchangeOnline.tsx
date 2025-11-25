@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const articles = [
   {
@@ -26,6 +28,10 @@ const articles = [
 ];
 
 const ExchangeOnline = () => {
+  useEffect(() => {
+    trackEvent("kb_article_view", "Knowledge Base", "Exchange Online");
+  }, []);
+
   return (
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
