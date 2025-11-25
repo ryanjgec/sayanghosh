@@ -8,29 +8,70 @@ import { Mail, Phone, Linkedin, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
 import { SEO } from "@/components/SEO";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Track contact form submission
-    trackEvent("contact_form_submit", "Contact", "Form Submission");
-    
-    // This is a frontend-only form for now
-    toast({
-      title: "Message Received!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+    // Validate inputs
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    // Reset form
-    setName("");
-    setEmail("");
-    setMessage("");
+    setIsSubmitting(true);
+    
+    try {
+      // Track contact form submission
+      trackEvent("contact_form_submit", "Contact", "Form Submission");
+      
+      // Call the edge function
+      const { data, error } = await supabase.functions.invoke("submit-contact", {
+        body: {
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim() || undefined,
+          message: message.trim(),
+        },
+      });
+
+      if (error) {
+        console.error("Submission error:", error);
+        throw new Error(error.message || "Failed to submit form");
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      // Reset form
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Please try again later or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -159,6 +200,17 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+91 70011 64440"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="message">Message *</Label>
                     <Textarea
                       id="message"
@@ -170,12 +222,12 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full">
-                    Send Message
+                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
-                    This is a frontend-only form. For immediate contact, please use email or LinkedIn.
+                    You'll receive a confirmation email once your message is submitted.
                   </p>
                 </form>
               </CardContent>
