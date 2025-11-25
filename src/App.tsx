@@ -28,6 +28,7 @@ import BlogArticle from "./pages/BlogArticle";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminArticles from "./pages/admin/Articles";
 import ArticleEditor from "./pages/admin/ArticleEditor";
+import AdminAnalytics from "./pages/admin/Analytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,6 +61,7 @@ const AppContent = () => {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/articles" element={<AdminArticles />} />
           <Route path="/admin/articles/:id" element={<ArticleEditor />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
