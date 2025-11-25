@@ -206,7 +206,7 @@ const Home = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Currently Open to Opportunities</h2>
           <p className="text-lg mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
-            1 Month Notice Period • Available for M365 Administration & Cloud Engineering Roles
+            Currently Serving Notice Period • Available for M365 Administration & Cloud Engineering Roles
           </p>
           <Button size="lg" variant="secondary" asChild>
             <Link to="/contact">
