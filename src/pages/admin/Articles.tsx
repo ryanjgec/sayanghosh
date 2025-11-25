@@ -103,12 +103,12 @@ const AdminArticles = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
-            <div>
-              <h1 className="text-4xl font-bold mb-2 text-foreground">Articles</h1>
-              <p className="text-lg text-muted-foreground">
-                Manage your blog articles
-              </p>
-            </div>
+               <div>
+                  <h1 className="text-4xl font-bold mb-2 text-foreground">Case Studies & Blog</h1>
+                  <p className="text-lg text-muted-foreground">
+                    Manage your case studies and blog articles
+                  </p>
+                </div>
             <Link to="/admin/articles/new">
               <Button>
                 <Plus className="mr-2 h-4 w-4" />

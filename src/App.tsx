@@ -23,7 +23,6 @@ import CaseStudies from "./pages/CaseStudies";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
-import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminArticles from "./pages/admin/Articles";
@@ -56,11 +55,10 @@ const AppContent = () => {
           <Route path="/knowledge-base/defender" element={<Defender />} />
           <Route path="/knowledge-base/powershell" element={<PowerShell />} />
           <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-studies/:slug" element={<BlogArticle />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/articles" element={<AdminArticles />} />
           <Route path="/admin/articles/:id" element={<ArticleEditor />} />
