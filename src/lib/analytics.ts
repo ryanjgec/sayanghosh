@@ -1,7 +1,7 @@
 // Google Analytics configuration
 // Get your GA4 Measurement ID from: https://analytics.google.com/
 // It looks like: G-XXXXXXXXXX
-export const GA_MEASUREMENT_ID = "G-XXXXXXXXXX"; // Replace with your actual GA4 Measurement ID
+export const GA_MEASUREMENT_ID = "G-BNPW8BE4JF";
 
 declare global {
   interface Window {
@@ -15,7 +15,7 @@ declare global {
 
 // Track page views
 export const trackPageView = (url: string) => {
-  if (typeof window.gtag !== "undefined" && GA_MEASUREMENT_ID !== "G-XXXXXXXXXX") {
+  if (typeof window.gtag !== "undefined") {
     window.gtag("config", GA_MEASUREMENT_ID, {
       page_path: url,
     });
@@ -29,7 +29,7 @@ export const trackEvent = (
   label?: string,
   value?: number
 ) => {
-  if (typeof window.gtag !== "undefined" && GA_MEASUREMENT_ID !== "G-XXXXXXXXXX") {
+  if (typeof window.gtag !== "undefined") {
     window.gtag("event", action, {
       event_category: category,
       event_label: label,

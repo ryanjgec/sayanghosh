@@ -1,8 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Linkedin, FileText } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const Resume = () => {
+  const handleDownloadClick = () => {
+    trackEvent("resume_download_click", "Resume", "Download Button");
+  };
+
+  const handleLinkedInClick = () => {
+    trackEvent("linkedin_click", "Resume", "LinkedIn Profile");
+  };
+
   return (
     <div className="min-h-screen py-12 bg-background">
       <div className="container mx-auto px-4">
@@ -70,7 +79,7 @@ const Resume = () => {
 
               {/* Download Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="flex-1" disabled>
+                <Button size="lg" className="flex-1" disabled onClick={handleDownloadClick}>
                   <Download className="mr-2 h-5 w-5" />
                   Download Resume (PDF)
                 </Button>
@@ -79,6 +88,7 @@ const Resume = () => {
                     href="https://linkedin.com/in/sayankghosh"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={handleLinkedInClick}
                   >
                     <Linkedin className="mr-2 h-5 w-5" />
                     View LinkedIn Profile
