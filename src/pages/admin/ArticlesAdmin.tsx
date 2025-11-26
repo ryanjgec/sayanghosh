@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-interface KBArticle {
+interface Article {
   id: string;
   title: string;
   slug: string;
@@ -18,11 +18,11 @@ interface KBArticle {
   created_at: string;
 }
 
-const KBArticles = () => {
+const ArticlesAdmin = () => {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
   const { toast } = useToast();
-  const [articles, setArticles] = useState<KBArticle[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,10 +46,10 @@ const KBArticles = () => {
       if (error) throw error;
       setArticles(data || []);
     } catch (error) {
-      console.error("Error fetching KB articles:", error);
+      console.error("Error fetching articles:", error);
       toast({
         title: "Error",
-        description: "Failed to load knowledge base articles",
+        description: "Failed to load articles",
         variant: "destructive",
       });
     } finally {
@@ -95,10 +95,10 @@ const KBArticles = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold mb-2 text-foreground">Knowledge Base Articles</h1>
-            <p className="text-muted-foreground">Manage your knowledge base content</p>
+            <h1 className="text-4xl font-bold mb-2 text-foreground">Articles</h1>
+            <p className="text-muted-foreground">Manage your knowledge base articles</p>
           </div>
-          <Button onClick={() => navigate("/admin/kb-articles/new")}>
+          <Button onClick={() => navigate("/admin/articles/new")}>
             <Plus className="mr-2 h-4 w-4" />
             New Article
           </Button>
@@ -107,8 +107,8 @@ const KBArticles = () => {
         {articles.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground mb-4">No knowledge base articles yet</p>
-              <Button onClick={() => navigate("/admin/kb-articles/new")}>
+              <p className="text-muted-foreground mb-4">No articles yet</p>
+              <Button onClick={() => navigate("/admin/articles/new")}>
                 <Plus className="mr-2 h-4 w-4" />
                 Create Your First Article
               </Button>
@@ -135,7 +135,7 @@ const KBArticles = () => {
                       <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => navigate(`/admin/kb-articles/${article.id}`)}
+                        onClick={() => navigate(`/admin/articles/${article.id}`)}
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -163,4 +163,4 @@ const KBArticles = () => {
   );
 };
 
-export default KBArticles;
+export default ArticlesAdmin;

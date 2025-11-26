@@ -43,22 +43,22 @@ const AdminDashboard = () => {
 
           {/* Quick Stats/Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-            <Link to="/admin/blog">
+            <Link to="/admin/articles">
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-primary/10 rounded-lg">
-                      <FileText className="h-6 w-6 text-primary" />
+                      <BookOpen className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle>Blog</CardTitle>
-                      <CardDescription>Manage blog posts</CardDescription>
+                      <CardTitle>Articles</CardTitle>
+                      <CardDescription>Manage knowledge base</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <Button className="w-full">
-                    Manage Blog
+                    Manage Articles
                   </Button>
                 </CardContent>
               </Card>
@@ -85,25 +85,6 @@ const AdminDashboard = () => {
               </Card>
             </Link>
 
-            <Card className="opacity-50">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Users className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle>Users</CardTitle>
-                    <CardDescription>Coming soon</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" disabled>
-                  View Users
-                </Button>
-              </CardContent>
-            </Card>
-
             <Link to="/admin/analytics">
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardHeader>
@@ -120,27 +101,6 @@ const AdminDashboard = () => {
                 <CardContent>
                   <Button className="w-full">
                     View Analytics
-                  </Button>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link to="/admin/kb-articles">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <BookOpen className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <CardTitle>Knowledge Base</CardTitle>
-                      <CardDescription>Manage KB articles</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <Button className="w-full">
-                    Manage KB Articles
                   </Button>
                 </CardContent>
               </Card>

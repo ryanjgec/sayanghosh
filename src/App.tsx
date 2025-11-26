@@ -24,13 +24,15 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import BlogArticle from "./pages/BlogArticle";
 import AdminDashboard from "./pages/admin/Dashboard";
-import Blog from "./pages/admin/Blog";
-import BlogEditor from "./pages/admin/BlogEditor";
 import CaseStudiesAdmin from "./pages/admin/CaseStudiesAdmin";
 import CaseStudyEditor from "./pages/admin/CaseStudyEditor";
 import AdminAnalytics from "./pages/admin/Analytics";
-import KBArticles from "./pages/admin/KBArticles";
-import KBArticleEditor from "./pages/admin/KBArticleEditor";
+import ArticlesAdmin from "./pages/admin/ArticlesAdmin";
+import ArticleEditor from "./pages/admin/ArticleEditor";
+import Terms from "./pages/legal/Terms";
+import Privacy from "./pages/legal/Privacy";
+import Disclaimer from "./pages/legal/Disclaimer";
+import Copyright from "./pages/legal/Copyright";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -60,13 +62,15 @@ const AppContent = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/blog" element={<Blog />} />
-          <Route path="/admin/blog/:id" element={<BlogEditor />} />
+          <Route path="/admin/articles" element={<ArticlesAdmin />} />
+          <Route path="/admin/articles/:id" element={<ArticleEditor />} />
           <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
           <Route path="/admin/case-studies/:id" element={<CaseStudyEditor />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
-          <Route path="/admin/kb-articles" element={<KBArticles />} />
-          <Route path="/admin/kb-articles/:id" element={<KBArticleEditor />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/legal/privacy" element={<Privacy />} />
+          <Route path="/legal/disclaimer" element={<Disclaimer />} />
+          <Route path="/legal/copyright" element={<Copyright />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

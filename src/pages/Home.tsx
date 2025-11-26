@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SkillCard } from "@/components/SkillCard";
 import { SEO } from "@/components/SEO";
+import { ResumeDownloadModal } from "@/components/ResumeDownloadModal";
 import { 
   Cloud, 
   Shield, 
@@ -65,9 +67,11 @@ const featuredCases = [
 ];
 
 const Home = () => {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
   return (
     <>
-      <SEO 
+      <SEO
         title="Home"
         description="Sayan Ghosh - Microsoft 365 Administrator with 4+ years managing enterprise cloud infrastructure. Expert in Exchange Online, Intune MDM, Entra ID, Teams, Defender, and PowerShell automation."
         keywords="Sayan Ghosh, Microsoft 365 Administrator, M365 Admin, Cloud Services Engineer, Exchange Online, Intune MDM, Entra ID, Teams Administrator, Microsoft Defender, PowerShell Automation, Azure, Accenture"
@@ -85,11 +89,9 @@ const Home = () => {
               Strong in troubleshooting, identity governance, and service operations.
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in">
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/resume">
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume
-                </Link>
+              <Button size="lg" variant="secondary" onClick={() => setIsResumeModalOpen(true)}>
+                <Download className="mr-2 h-5 w-5" />
+                Download Resume
               </Button>
               <Button size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
                 <Link to="/experience">
@@ -216,6 +218,8 @@ const Home = () => {
           </Button>
         </div>
       </section>
+
+      <ResumeDownloadModal open={isResumeModalOpen} onOpenChange={setIsResumeModalOpen} />
     </div>
     </>
   );
